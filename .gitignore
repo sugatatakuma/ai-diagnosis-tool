@@ -1,0 +1,31 @@
+# 内部仕様書・設計レビュー・運用ドキュメント（公開しない）
+PLAN.md
+DEVELOPMENT.md
+ai_diagnosis_tool_spec.md
+ai_diagnosis_tool_spec_v2.0.md
+codex_review_prompt.md
+codex_review_round2.md
+privacy_policy_draft.md
+google_sheets_columns.md
+実装注意事項.md
+
+# テスト系（本番Pagesには不要）
+test/
+test_answers.json
+
+# 機密情報
+機密情報/
+*.env
+*_credentials*.txt
+*_api_token*.txt
+
+# OS / エディタ
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
+
+# ログ
+*.log
+logs/

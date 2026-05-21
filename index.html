@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="12問で、あなたの会社の「非効率」と「AI改善余地」を可視化します。">
+<title>AI業務改善インパクト診断</title>
+<link rel="stylesheet" href="./css/style.css?v=20260521">
+<!-- Cloudflare Turnstile -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>
+</head>
+<body>
+
+<header class="app-header">
+  <h1>AI業務改善インパクト診断</h1>
+</header>
+
+<main class="container">
+
+  <div id="error-message" class="error-message"></div>
+
+  <!-- ===== 開始画面 ===== -->
+  <section id="screen-start" class="screen active">
+    <div class="card">
+      <h2>12問で、御社の「非効率」と「AI改善余地」を可視化します</h2>
+      <p class="subcopy">所要時間 3〜5分。診断後、御社専用の改善優先順位と実行手順をメールでお送りします。</p>
+
+      <ul>
+        <li>業務課題の深刻度を50点満点でスコア化</li>
+        <li>AI導入の準備度を50点満点でスコア化</li>
+        <li>4タイプ別の具体施策と30日アクションプランを送付</li>
+        <li>放置した場合の年間損失額を試算</li>
+      </ul>
+
+      <button id="btn-start" class="btn btn-large">診断を始める</button>
+
+      <p class="subcopy" style="margin-top:24px; font-size:12px;">
+        ※ 診断結果メールはお伝えしたメールアドレス宛にのみ送信します。<br>
+        詳細は <a href="./privacy.html" target="_blank">プライバシーポリシー</a> をご確認ください。
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== 質問画面 ===== -->
+  <section id="screen-question" class="screen">
+    <div class="card">
+      <div class="progress-bar">
+        <div id="progress-fill" class="progress-fill" style="width:0%"></div>
+      </div>
+      <p id="progress-text" class="progress-text">Q1 / 12</p>
+
+      <span id="question-no" class="question-no">Q1</span>
+      <h2 id="question-text" class="question-text"></h2>
+      <p id="question-hint" class="question-hint" style="display:none;"></p>
+
+      <div id="question-options" class="options"></div>
+
+      <div class="btn-row">
+        <button id="btn-prev" class="btn btn-secondary">前に戻る</button>
+        <button id="btn-next" class="btn" style="display:none;">次へ</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 即時結果プレビュー画面 ===== -->
+  <section id="screen-preview" class="screen">
+    <div class="card">
+      <span class="diag-type-badge">診断タイプ</span>
+      <h2 id="preview-diag-type"></h2>
+
+      <div class="score-grid">
+        <div class="score-cell">
+          <div class="score-cell-label">課題スコア</div>
+          <div>
+            <span class="score-cell-value" id="preview-problem-score">0</span>
+            <span class="score-cell-max"> / 50</span>
+          </div>
+          <div class="score-bar-container">
+            <div id="preview-problem-bar" class="score-bar"></div>
+          </div>
+        </div>
+        <div class="score-cell">
+          <div class="score-cell-label">AI準備度スコア</div>
+          <div>
+            <span class="score-cell-value" id="preview-readiness-score">0</span>
+            <span class="score-cell-max"> / 50</span>
+          </div>
+          <div class="score-bar-container">
+            <div id="preview-readiness-bar" class="score-bar"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="score-cell" style="text-align:center;">
+        <div class="score-cell-label">AI改善余地スコア（合計）</div>
+        <div>
+          <span class="score-cell-value" id="preview-total-score">0</span>
+          <span class="score-cell-max"> / 100</span>
+        </div>
+      </div>
+
+      <div class="impact-box">
+        <div class="impact-label">推定削減時間（月間）</div>
+        <div class="impact-value" id="preview-hours-range">―</div>
+        <div class="impact-note">※ 詳細な金額試算・優先施策・30日アクションプランは、続けてメールでお送りします。</div>
+      </div>
+
+      <button id="btn-to-form" class="btn btn-large" style="width:100%;">
+        詳細レポートを受け取る
+      </button>
+    </div>
+  </section>
+
+  <!-- ===== メアド入力フォーム ===== -->
+  <section id="screen-form" class="screen">
+    <div class="card">
+      <h2 style="font-size:22px; margin-bottom:8px;">あと30秒で完了です</h2>
+      <p class="subcopy" style="margin-bottom:24px;">
+        あなた専用の改善優先順位と実行手順をメールでお送りします。
+      </p>
+
+      <form id="email-form">
+        <div class="form-group">
+          <label for="input-email" class="form-label">
+            メールアドレス<span class="required">*必須</span>
+          </label>
+          <input id="input-email" type="email" class="form-input" required
+                 placeholder="example@company.com">
+        </div>
+
+        <div class="form-group">
+          <label for="input-company-type" class="form-label">
+            組織区分<span class="optional">任意</span>
+          </label>
+          <select id="input-company-type" class="form-select">
+            <option value="法人">法人</option>
+            <option value="個人事業主・副業">個人事業主・副業</option>
+            <option value="">選択しない</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="input-company" class="form-label">
+            会社名<span class="optional">任意</span>
+          </label>
+          <input id="input-company" type="text" class="form-input"
+                 placeholder="例: 株式会社サンプル">
+        </div>
+
+        <div class="form-group">
+          <label for="input-name" class="form-label">
+            お名前<span class="optional">任意</span>
+          </label>
+          <input id="input-name" type="text" class="form-input"
+                 placeholder="例: 山田 太郎">
+        </div>
+
+        <!-- Cloudflare Turnstile -->
+        <div id="turnstile-widget" class="cf-turnstile"
+             data-sitekey="1x00000000000000000000AA"
+             data-size="invisible"></div>
+
+        <div class="form-consent">
+          <input id="input-consent" type="checkbox" required>
+          <label for="input-consent">
+            <a href="./privacy.html" target="_blank">プライバシーポリシー</a>に同意します
+            <span class="required">*必須</span>
+          </label>
+        </div>
+
+        <button id="btn-submit" type="submit" class="btn btn-large" style="width:100%;">
+          詳細レポートを受け取る
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== サンクス画面 ===== -->
+  <section id="screen-thanks" class="screen">
+    <div class="card">
+      <div class="thanks-icon">✓</div>
+      <h2>送信完了しました</h2>
+      <p class="thanks-note">
+        詳細レポートをメールでお送りしました。<br>
+        3〜5分以内に届かない場合は迷惑メールフォルダをご確認ください。
+      </p>
+
+      <div class="thanks-summary">
+        <div class="thanks-summary-label">あなたの診断タイプ</div>
+        <div class="thanks-summary-value" id="thanks-diag-type">―</div>
+        <div class="thanks-summary-label" style="margin-top:12px;">AI改善余地スコア</div>
+        <div class="thanks-summary-value">
+          <span id="thanks-total-score">―</span> <span style="font-size:14px; color:var(--neutral);">/ 100</span>
+        </div>
+      </div>
+
+      <p class="subcopy" style="font-size:13px; text-align:center;">
+        メールに記載のCTAリンクから無料相談をお申し込みいただけます。
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="app-footer">
+  <a href="./privacy.html">プライバシーポリシー</a>
+  <span>運営: 菅田 琢磨</span>
+</footer>
+
+<!-- スクリプト読み込み（依存順序を厳守） -->
+<script src="./js/config.js?v=20260521"></script>
+<script src="./js/questions.js?v=20260521"></script>
+<script src="./js/score.js?v=20260521"></script>
+<script src="./js/analytics.js?v=20260521"></script>
+<script src="./js/main.js?v=20260521"></script>
+
+</body>
+</html>
