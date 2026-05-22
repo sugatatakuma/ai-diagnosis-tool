@@ -1,7 +1,7 @@
 // アプリ設定（公開可能な範囲のみ。シークレットは含めない）
 window.APP_CONFIG = {
   // GA4 Measurement ID（GA4セットアップ後に置換）
-  ga4MeasurementId: '',
+  ga4MeasurementId: 'G-9GDCJDGS1L',
 
   // Cloudflare Turnstile Site Key（公開してOK）
   // 開発時: '1x00000000000000000000AA'（常にPASSするテストキー）
