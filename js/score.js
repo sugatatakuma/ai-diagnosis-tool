@@ -109,10 +109,13 @@
       weightedSum += baseHours[i] * coef;
     }
 
-    // 課題スコア比 × 規模係数
+    // 課題スコア比 × 規模係数 × Q10ボーナス係数
     const sizeCoef = config.size_coef[q1] || 1.0;
     const problemRatio = problemScore / config.problem_score_max;
-    let rawHours = weightedSum * problemRatio * sizeCoef;
+    const q10Count = (answers.q10 || []).length;
+    const q10Key = String(Math.min(q10Count, 6));
+    const q10Bonus = (config.q10_bonus_by_count && config.q10_bonus_by_count[q10Key]) || 1.0;
+    let rawHours = weightedSum * problemRatio * sizeCoef * q10Bonus;
 
     // 上限cap
     const cap = config.monthly_cap_hours[q1] || 9999;
@@ -130,7 +133,16 @@
       hoursYearLow: hoursMonthLow * 12,
       hoursYearHigh: hoursMonthHigh * 12,
       costYearLow: costMonthLow * 12,
-      costYearHigh: costMonthHigh * 12
+      costYearHigh: costMonthHigh * 12,
+      // 計算根拠 (UI表示用)
+      basis: {
+        weightedTaskHours: Math.round(weightedSum * 10) / 10,
+        problemRatio: Math.round(problemRatio * 100),
+        sizeCoef: sizeCoef,
+        q10Bonus: q10Bonus,
+        taskCount: q11.length,
+        cappedByLimit: Math.round(rawHours) > cap
+      }
     };
   };
 

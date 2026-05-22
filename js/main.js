@@ -197,10 +197,35 @@
     document.getElementById('preview-readiness-score').textContent = result.readinessScore;
     document.getElementById('preview-total-score').textContent = result.totalScore;
 
+    // 診断タイプの解説 + キーメッセージ
+    const typeInfo = CONFIG.diag_types[result.diagType];
+    const descEl = document.getElementById('preview-diag-description');
+    const msgEl = document.getElementById('preview-diag-key-message');
+    if (descEl && typeInfo) descEl.textContent = typeInfo.description || '';
+    if (msgEl && typeInfo) msgEl.textContent = typeInfo.key_message || '';
+
+    // 各スコア説明文
+    const sd = CONFIG.score_descriptions || {};
+    setText('preview-problem-desc', sd.problem);
+    setText('preview-readiness-desc', sd.readiness);
+    setText('preview-total-desc', sd.total);
+
     const hoursLow = result.reduction.hoursMonthLow;
     const hoursHigh = result.reduction.hoursMonthHigh;
     document.getElementById('preview-hours-range').textContent =
       `${hoursLow}〜${hoursHigh}時間`;
+
+    // 削減時間の算出根拠
+    const basisEl = document.getElementById('preview-reduction-basis');
+    if (basisEl && result.reduction.basis) {
+      const b = result.reduction.basis;
+      basisEl.innerHTML =
+        `<strong>計算根拠:</strong> ` +
+        `課題深刻度 ${b.problemRatio}% × ` +
+        `企業規模係数 ${b.sizeCoef} × ` +
+        `改善意欲ボーナス ${b.q10Bonus}` +
+        (b.cappedByLimit ? ' <span style="color:var(--orange);">（規模上限により頭打ち）</span>' : '');
+    }
 
     // 問題スコア / 準備度スコアの進捗バー色分け
     setProgressBarColor('preview-problem-bar', result.problemScore, CONFIG.problem_score_max);
@@ -209,6 +234,11 @@
     document.getElementById('btn-to-form').onclick = function () {
       renderEmailForm();
     };
+  }
+
+  function setText(elId, text) {
+    const el = document.getElementById(elId);
+    if (el && text !== undefined) el.textContent = text;
   }
 
   function setProgressBarColor(elId, value, max) {

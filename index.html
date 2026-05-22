@@ -6,7 +6,7 @@
 <meta name="description" content="12問で、あなたの会社の「非効率」と「AI改善余地」を可視化します。">
 <title>AI業務改善インパクト診断</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./css/style.css?v=20260522">
+<link rel="stylesheet" href="./css/style.css?v=20260522b">
 <!-- Cloudflare Turnstile -->
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>
 </head>
@@ -80,6 +80,13 @@
       <h2 id="preview-diag-type" class="anim"></h2>
       <div class="accent-line anim"></div>
 
+      <!-- 診断タイプの解説 -->
+      <p class="diag-type-description anim" id="preview-diag-description"></p>
+      <div class="diag-key-message anim">
+        <span class="diag-key-message-label">この状態のあなたへ</span>
+        <span id="preview-diag-key-message"></span>
+      </div>
+
       <div class="score-grid">
         <div class="score-cell anim">
           <div class="score-cell-label">課題スコア</div>
@@ -90,6 +97,7 @@
           <div class="score-bar-container">
             <div id="preview-problem-bar" class="score-bar"></div>
           </div>
+          <p class="score-cell-desc" id="preview-problem-desc"></p>
         </div>
         <div class="score-cell anim">
           <div class="score-cell-label">AI準備度スコア</div>
@@ -100,6 +108,7 @@
           <div class="score-bar-container">
             <div id="preview-readiness-bar" class="score-bar"></div>
           </div>
+          <p class="score-cell-desc" id="preview-readiness-desc"></p>
         </div>
       </div>
 
@@ -109,11 +118,13 @@
           <span class="score-cell-value" id="preview-total-score">0</span>
           <span class="score-cell-max"> / 100</span>
         </div>
+        <p class="score-cell-desc" id="preview-total-desc" style="text-align:left;"></p>
       </div>
 
       <div class="impact-box anim">
         <div class="impact-label">推定削減時間（月間）</div>
         <div class="impact-value" id="preview-hours-range">―</div>
+        <p class="reduction-basis" id="preview-reduction-basis"></p>
         <div class="impact-note">※ 詳細な金額試算・優先施策・30日アクションプランは、続けてメールでお送りします。</div>
       </div>
 
@@ -225,11 +236,11 @@
 </footer>
 
 <!-- スクリプト読み込み（依存順序を厳守） -->
-<script src="./js/config.js?v=20260522"></script>
-<script src="./js/questions.js?v=20260522"></script>
-<script src="./js/score.js?v=20260522"></script>
-<script src="./js/analytics.js?v=20260522"></script>
-<script src="./js/main.js?v=20260522"></script>
+<script src="./js/config.js?v=20260522b"></script>
+<script src="./js/questions.js?v=20260522b"></script>
+<script src="./js/score.js?v=20260522b"></script>
+<script src="./js/analytics.js?v=20260522b"></script>
+<script src="./js/main.js?v=20260522b"></script>
 
 </body>
 </html>

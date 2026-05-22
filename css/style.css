@@ -426,6 +426,65 @@ html, body {
   line-height: 1.6;
 }
 
+/* ========== 診断タイプ解説 ========== */
+.diag-type-description {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.8;
+  color: var(--text-sub);
+  margin: 8px 0 20px;
+  letter-spacing: 0.2px;
+}
+.diag-key-message {
+  background: var(--bg-gray);
+  border-left: 3px solid var(--orange);
+  padding: 18px 24px;
+  border-radius: 4px;
+  margin-bottom: 32px;
+}
+.diag-key-message-label {
+  display: block;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--orange);
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+.diag-key-message > span:last-child {
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.7;
+  color: var(--black);
+}
+
+/* ========== スコア説明文 ========== */
+.score-cell-desc {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-light);
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  letter-spacing: 0.2px;
+}
+
+/* ========== 削減時間 算出根拠 ========== */
+.reduction-basis {
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--text-light);
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border);
+  letter-spacing: 0.2px;
+}
+.reduction-basis strong {
+  color: var(--text-sub);
+  font-weight: 700;
+}
+
 /* ========== フォーム ========== */
 .form-group {
   margin-bottom: 22px;
