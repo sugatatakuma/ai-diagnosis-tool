@@ -5,7 +5,7 @@ window.APP_CONFIG = {
 
   // Cloudflare Turnstile Site Key（公開してOK）
   // 開発時: '1x00000000000000000000AA'（常にPASSするテストキー）
-  turnstileSiteKey: '1x00000000000000000000AA',
+  turnstileSiteKey: '0x4AAAAAADT-ufzD9zWCIgZm',
 
   // Make Webhook URL（実装時に Make から取得して差し替え）
   // 開発時: モックエンドポイント（実際にはPOSTしない）
