@@ -194,10 +194,10 @@
 
     document.getElementById('preview-diag-type').textContent = result.diagTypeName;
 
-    // レベル表示
-    setLevel('preview-problem-level', 'preview-problem-scale', result.problemLevel);
-    setLevel('preview-readiness-level', 'preview-readiness-scale', result.readinessLevel);
-    setLevel('preview-total-level', 'preview-total-scale', result.totalLevel);
+    // レベル表示（3段インジケーターのハイライト）
+    setLevel('preview-problem-scale', result.problemLevel);
+    setLevel('preview-readiness-scale', result.readinessLevel);
+    setLevel('preview-total-scale', result.totalLevel);
 
     // 診断タイプの解説 + キーメッセージ
     const typeInfo = CONFIG.diag_types[result.diagType];
@@ -227,18 +227,11 @@
     if (el && text !== undefined) el.textContent = text;
   }
 
-  function setLevel(levelElId, scaleElId, levelData) {
-    const levelEl = document.getElementById(levelElId);
-    if (!levelEl || !levelData) return;
-    levelEl.textContent = levelData.level;
-    // tier クラス: index 0=低, 1=中, 2=高
-    levelEl.classList.remove('level-low', 'level-mid', 'level-high');
+  function setLevel(scaleElId, levelData) {
+    if (!levelData) return;
     const tier = levelData.index === 0 ? 'low'
                : levelData.index === 1 ? 'mid'
                : 'high';
-    levelEl.classList.add('level-' + tier);
-
-    // インジケーター（低/中/高の3段）でactive位置をマーク
     const scale = document.getElementById(scaleElId);
     if (scale) {
       const items = scale.querySelectorAll('.level-scale-item');

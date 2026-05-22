@@ -459,43 +459,30 @@ html, body {
   color: var(--black);
 }
 
-/* ========== スコアレベル（高・中・低の3段表示） ========== */
-.score-level {
-  font-family: 'Noto Sans JP', 'Inter', sans-serif;
-  font-size: 56px;
-  font-weight: 900;
-  text-align: center;
-  margin: 12px 0 6px;
-  letter-spacing: 4px;
-  line-height: 1.1;
-  color: var(--text-light);
-  transition: color 0.4s;
-}
-.score-level.level-low { color: var(--text-sub); }
-.score-level.level-mid { color: var(--orange); }
-.score-level.level-high { color: var(--blue); }
-
+/* ========== レベルスケール（低・中・高の3段インジケーター） ========== */
 .level-scale {
   display: flex;
   justify-content: center;
-  gap: 6px;
-  margin: 0 auto 16px;
+  gap: 8px;
+  margin: 18px auto 20px;
 }
 .level-scale-item {
   font-family: 'Noto Sans JP', sans-serif;
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--text-light);
-  padding: 5px 16px;
-  border-radius: 4px;
+  padding: 10px 26px;
+  border-radius: 6px;
   background: var(--bg-gray);
-  letter-spacing: 1.5px;
-  transition: all 0.25s cubic-bezier(0,1,0.64,1);
+  letter-spacing: 2px;
+  transition: all 0.3s cubic-bezier(0,1,0.64,1);
 }
 .level-scale-item.active {
   color: var(--bg);
-  transform: scale(1.08);
-  box-shadow: var(--shadow);
+  font-size: 17px;
+  transform: scale(1.1);
+  box-shadow: var(--shadow-hover);
+  letter-spacing: 3px;
 }
 .level-scale-item.active-low { background: var(--text-sub); }
 .level-scale-item.active-mid { background: var(--orange); }
