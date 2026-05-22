@@ -23,7 +23,7 @@
   <!-- ===== 開始画面 ===== -->
   <section id="screen-start" class="screen active">
     <div class="card">
-      <div class="section-tag anim">Diagnosis</div>
+      <div class="section-tag anim">AI業務改善診断</div>
       <h2 class="anim">12問で、御社の「非効率」と<br>「AI改善余地」を可視化します</h2>
       <div class="accent-line anim"></div>
 
@@ -75,14 +75,14 @@
   <!-- ===== 即時結果プレビュー画面 ===== -->
   <section id="screen-preview" class="screen">
     <div class="card">
-      <div class="section-tag anim">Your Result</div>
+      <div class="section-tag anim">診断結果</div>
       <span class="diag-type-badge anim">診断タイプ</span>
       <h2 id="preview-diag-type" class="anim"></h2>
       <div class="accent-line anim"></div>
 
       <div class="score-grid">
         <div class="score-cell anim">
-          <div class="score-cell-label">Problem Score</div>
+          <div class="score-cell-label">課題スコア</div>
           <div>
             <span class="score-cell-value" id="preview-problem-score">0</span>
             <span class="score-cell-max"> / 50</span>
@@ -92,7 +92,7 @@
           </div>
         </div>
         <div class="score-cell anim">
-          <div class="score-cell-label">Readiness Score</div>
+          <div class="score-cell-label">AI準備度スコア</div>
           <div>
             <span class="score-cell-value" id="preview-readiness-score">0</span>
             <span class="score-cell-max"> / 50</span>
@@ -104,7 +104,7 @@
       </div>
 
       <div class="score-cell anim" style="text-align:center; border-top-color:var(--orange);">
-        <div class="score-cell-label" style="color:var(--orange);">Total Improvement Potential</div>
+        <div class="score-cell-label" style="color:var(--orange);">AI改善余地スコア（合計）</div>
         <div>
           <span class="score-cell-value" id="preview-total-score">0</span>
           <span class="score-cell-max"> / 100</span>
@@ -128,7 +128,7 @@
   <!-- ===== メアド入力フォーム ===== -->
   <section id="screen-form" class="screen">
     <div class="card">
-      <div class="section-tag anim">Final Step</div>
+      <div class="section-tag anim">最終ステップ</div>
       <h2 class="anim" style="font-size:26px; margin-bottom:0;">あと30秒で完了です</h2>
       <div class="accent-line anim"></div>
 
@@ -202,9 +202,9 @@
       </p>
 
       <div class="thanks-summary anim">
-        <div class="thanks-summary-label">Your Diagnosis Type</div>
+        <div class="thanks-summary-label">診断タイプ</div>
         <div class="thanks-summary-value" id="thanks-diag-type">―</div>
-        <div class="thanks-summary-label" style="margin-top:16px;">Total Score</div>
+        <div class="thanks-summary-label" style="margin-top:16px;">合計スコア</div>
         <div class="thanks-summary-value">
           <span id="thanks-total-score">―</span>
           <span style="font-size:14px; color:var(--text-light); font-weight:400;"> / 100</span>

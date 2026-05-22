@@ -83,11 +83,10 @@ html, body {
 
 /* ========== セクションタグ + アクセントライン ========== */
 .section-tag {
-  font-family: 'Inter', sans-serif;
-  font-size: 12px;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 13px;
   font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
+  letter-spacing: 2px;
   color: var(--blue);
   margin-bottom: 14px;
 }
@@ -324,15 +323,14 @@ html, body {
 /* ========== 即時結果プレビュー ========== */
 #screen-preview .diag-type-badge {
   display: inline-block;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Noto Sans JP', sans-serif;
   background: var(--orange);
   color: var(--bg);
   padding: 6px 18px;
   border-radius: 4px;
   font-size: 13px;
   font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+  letter-spacing: 1.5px;
   margin-bottom: 16px;
 }
 #screen-preview h2 {
@@ -362,12 +360,11 @@ html, body {
   box-shadow: var(--shadow-hover);
 }
 .score-cell-label {
-  font-family: 'Inter', sans-serif;
-  font-size: 11px;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 12px;
   font-weight: 700;
   color: var(--text-light);
-  letter-spacing: 2px;
-  text-transform: uppercase;
+  letter-spacing: 1.5px;
   margin-bottom: 8px;
 }
 .score-cell-value {
@@ -407,12 +404,11 @@ html, body {
   border-radius: 4px;
 }
 .impact-label {
-  font-family: 'Inter', sans-serif;
-  font-size: 11px;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 12px;
   font-weight: 700;
   color: var(--orange);
-  letter-spacing: 3px;
-  text-transform: uppercase;
+  letter-spacing: 2px;
   margin-bottom: 8px;
 }
 .impact-value {
@@ -441,20 +437,20 @@ html, body {
   color: var(--text);
   letter-spacing: 1px;
   margin-bottom: 8px;
-  text-transform: uppercase;
-  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  font-family: 'Noto Sans JP', sans-serif;
 }
 .form-label .required {
   color: var(--red);
   margin-left: 6px;
   font-size: 11px;
+  letter-spacing: 0.5px;
 }
 .form-label .optional {
   font-weight: 400;
   color: var(--text-light);
   margin-left: 8px;
   font-size: 11px;
-  text-transform: none;
+  letter-spacing: 0.5px;
 }
 .form-input, .form-select {
   width: 100%;
@@ -536,20 +532,20 @@ html, body {
   margin: 28px 0;
 }
 .thanks-summary-label {
-  font-family: 'Inter', sans-serif;
-  font-size: 11px;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 12px;
   font-weight: 700;
   color: var(--green);
-  letter-spacing: 3px;
-  text-transform: uppercase;
+  letter-spacing: 2px;
   margin-bottom: 8px;
 }
 .thanks-summary-value {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Noto Sans JP', 'Inter', sans-serif;
   font-size: 22px;
   font-weight: 900;
   color: var(--black);
   margin-top: 4px;
+  letter-spacing: 0.5px;
 }
 
 /* ========== エラーメッセージ ========== */
