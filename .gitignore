@@ -12,6 +12,7 @@ google_sheets_columns.md
 # テスト系（本番Pagesには不要）
 test/
 test_answers.json
+headers.csv
 
 # 機密情報
 機密情報/
