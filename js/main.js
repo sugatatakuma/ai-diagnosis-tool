@@ -193,14 +193,11 @@
     });
 
     document.getElementById('preview-diag-type').textContent = result.diagTypeName;
-    document.getElementById('preview-problem-score').textContent = result.problemScore;
-    document.getElementById('preview-readiness-score').textContent = result.readinessScore;
-    document.getElementById('preview-total-score').textContent = result.totalScore;
 
-    // バンドラベル
-    setBand('preview-problem-band', result.problemBand);
-    setBand('preview-readiness-band', result.readinessBand);
-    setBand('preview-total-band', result.totalBand);
+    // レベル表示
+    setLevel('preview-problem-level', 'preview-problem-scale', result.problemLevel);
+    setLevel('preview-readiness-level', 'preview-readiness-scale', result.readinessLevel);
+    setLevel('preview-total-level', 'preview-total-scale', result.totalLevel);
 
     // 診断タイプの解説 + キーメッセージ
     const typeInfo = CONFIG.diag_types[result.diagType];
@@ -220,10 +217,6 @@
     document.getElementById('preview-hours-range').textContent =
       `${hoursLow}〜${hoursHigh}時間`;
 
-    // 問題スコア / 準備度スコアの進捗バー色分け
-    setProgressBarColor('preview-problem-bar', result.problemScore, CONFIG.problem_score_max);
-    setProgressBarColor('preview-readiness-bar', result.readinessScore, CONFIG.readiness_score_max);
-
     document.getElementById('btn-to-form').onclick = function () {
       renderEmailForm();
     };
@@ -234,15 +227,28 @@
     if (el && text !== undefined) el.textContent = text;
   }
 
-  function setBand(elId, band) {
-    const el = document.getElementById(elId);
-    if (!el || !band) return;
-    el.textContent = band.label;
-    // tier クラス付与: 5段階のうち下位2=low、中央=mid、上位2=high
-    el.classList.remove('score-band--low', 'score-band--mid', 'score-band--high');
-    if (band.index <= 1) el.classList.add('score-band--low');
-    else if (band.index === 2) el.classList.add('score-band--mid');
-    else el.classList.add('score-band--high');
+  function setLevel(levelElId, scaleElId, levelData) {
+    const levelEl = document.getElementById(levelElId);
+    if (!levelEl || !levelData) return;
+    levelEl.textContent = levelData.level;
+    // tier クラス: index 0=低, 1=中, 2=高
+    levelEl.classList.remove('level-low', 'level-mid', 'level-high');
+    const tier = levelData.index === 0 ? 'low'
+               : levelData.index === 1 ? 'mid'
+               : 'high';
+    levelEl.classList.add('level-' + tier);
+
+    // インジケーター（低/中/高の3段）でactive位置をマーク
+    const scale = document.getElementById(scaleElId);
+    if (scale) {
+      const items = scale.querySelectorAll('.level-scale-item');
+      items.forEach((item, idx) => {
+        item.classList.remove('active', 'active-low', 'active-mid', 'active-high');
+        if (idx === levelData.index) {
+          item.classList.add('active', 'active-' + tier);
+        }
+      });
+    }
   }
 
   function setProgressBarColor(elId, value, max) {
@@ -361,7 +367,7 @@
 
     // 簡易結果を再掲（メール待ち中の離脱を防ぐ）
     document.getElementById('thanks-diag-type').textContent = result.diagTypeName;
-    document.getElementById('thanks-total-score').textContent = result.totalScore;
+    document.getElementById('thanks-total-level').textContent = result.totalLevel.level;
   }
 
   // ====== テストパターン自動投入 ======

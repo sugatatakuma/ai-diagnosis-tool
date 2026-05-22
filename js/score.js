@@ -146,16 +146,16 @@
     };
   };
 
-  // バンドラベル取得 (5段階)
-  SCORE.calcBand = function (value, bandKey, config) {
-    const bands = (config.score_bands && config.score_bands[bandKey]) || [];
-    for (let i = 0; i < bands.length; i++) {
-      const b = bands[i];
-      if (value >= b.min && value <= b.max) {
-        return { label: b.label, index: i, total: bands.length };
+  // レベル取得 (高・中・低の3段階)
+  SCORE.calcLevel = function (value, levelKey, config) {
+    const levels = (config.score_levels && config.score_levels[levelKey]) || [];
+    for (let i = 0; i < levels.length; i++) {
+      const l = levels[i];
+      if (value >= l.min && value <= l.max) {
+        return { level: l.level, label: l.label, index: i, total: levels.length };
       }
     }
-    return { label: '', index: -1, total: bands.length };
+    return { level: '', label: '', index: -1, total: levels.length };
   };
 
   // 一括計算
@@ -170,9 +170,9 @@
       problemScore: problemScore,
       readinessScore: readinessScore,
       totalScore: totalScore,
-      problemBand: SCORE.calcBand(problemScore, 'problem', config),
-      readinessBand: SCORE.calcBand(readinessScore, 'readiness', config),
-      totalBand: SCORE.calcBand(totalScore, 'total', config),
+      problemLevel: SCORE.calcLevel(problemScore, 'problem', config),
+      readinessLevel: SCORE.calcLevel(readinessScore, 'readiness', config),
+      totalLevel: SCORE.calcLevel(totalScore, 'total', config),
       diagType: diagType,
       diagTypeName: config.diag_types[diagType].name,
       reduction: reduction

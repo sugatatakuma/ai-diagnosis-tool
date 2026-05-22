@@ -6,7 +6,7 @@
 <meta name="description" content="12問で、あなたの会社の「非効率」と「AI改善余地」を可視化します。">
 <title>AI業務改善インパクト診断</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./css/style.css?v=20260522f">
+<link rel="stylesheet" href="./css/style.css?v=20260522g">
 <!-- Cloudflare Turnstile -->
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>
 </head>
@@ -89,38 +89,35 @@
 
       <div class="score-grid">
         <div class="score-cell anim">
-          <div class="score-cell-label">課題スコア</div>
-          <div>
-            <span class="score-cell-value" id="preview-problem-score">0</span>
-            <span class="score-cell-max"> / 50</span>
-          </div>
-          <span class="score-band" id="preview-problem-band"></span>
-          <div class="score-bar-container">
-            <div id="preview-problem-bar" class="score-bar"></div>
+          <div class="score-cell-label">課題レベル</div>
+          <div class="score-level" id="preview-problem-level">―</div>
+          <div class="level-scale" id="preview-problem-scale">
+            <span class="level-scale-item">低</span>
+            <span class="level-scale-item">中</span>
+            <span class="level-scale-item">高</span>
           </div>
           <p class="score-cell-desc" id="preview-problem-desc"></p>
         </div>
         <div class="score-cell anim">
-          <div class="score-cell-label">AI準備度スコア</div>
-          <div>
-            <span class="score-cell-value" id="preview-readiness-score">0</span>
-            <span class="score-cell-max"> / 50</span>
-          </div>
-          <span class="score-band" id="preview-readiness-band"></span>
-          <div class="score-bar-container">
-            <div id="preview-readiness-bar" class="score-bar"></div>
+          <div class="score-cell-label">AI準備度レベル</div>
+          <div class="score-level" id="preview-readiness-level">―</div>
+          <div class="level-scale" id="preview-readiness-scale">
+            <span class="level-scale-item">低</span>
+            <span class="level-scale-item">中</span>
+            <span class="level-scale-item">高</span>
           </div>
           <p class="score-cell-desc" id="preview-readiness-desc"></p>
         </div>
       </div>
 
       <div class="score-cell anim" style="text-align:center; border-top-color:var(--orange);">
-        <div class="score-cell-label" style="color:var(--orange);">AI改善余地スコア（合計）</div>
-        <div>
-          <span class="score-cell-value" id="preview-total-score">0</span>
-          <span class="score-cell-max"> / 100</span>
+        <div class="score-cell-label" style="color:var(--orange);">AI改善余地レベル</div>
+        <div class="score-level" id="preview-total-level">―</div>
+        <div class="level-scale" id="preview-total-scale">
+          <span class="level-scale-item">低</span>
+          <span class="level-scale-item">中</span>
+          <span class="level-scale-item">高</span>
         </div>
-        <span class="score-band" id="preview-total-band"></span>
         <p class="score-cell-desc" id="preview-total-desc" style="text-align:left;"></p>
       </div>
 
@@ -217,11 +214,8 @@
       <div class="thanks-summary anim">
         <div class="thanks-summary-label">診断タイプ</div>
         <div class="thanks-summary-value" id="thanks-diag-type">―</div>
-        <div class="thanks-summary-label" style="margin-top:16px;">合計スコア</div>
-        <div class="thanks-summary-value">
-          <span id="thanks-total-score">―</span>
-          <span style="font-size:14px; color:var(--text-light); font-weight:400;"> / 100</span>
-        </div>
+        <div class="thanks-summary-label" style="margin-top:16px;">AI改善余地レベル</div>
+        <div class="thanks-summary-value" id="thanks-total-level">―</div>
       </div>
 
       <p class="subcopy anim" style="font-size:13px; text-align:center; color:var(--text-light); line-height:1.7;">
@@ -238,11 +232,11 @@
 </footer>
 
 <!-- スクリプト読み込み（依存順序を厳守） -->
-<script src="./js/config.js?v=20260522f"></script>
-<script src="./js/questions.js?v=20260522f"></script>
-<script src="./js/score.js?v=20260522f"></script>
-<script src="./js/analytics.js?v=20260522f"></script>
-<script src="./js/main.js?v=20260522f"></script>
+<script src="./js/config.js?v=20260522g"></script>
+<script src="./js/questions.js?v=20260522g"></script>
+<script src="./js/score.js?v=20260522g"></script>
+<script src="./js/analytics.js?v=20260522g"></script>
+<script src="./js/main.js?v=20260522g"></script>
 
 </body>
 </html>
