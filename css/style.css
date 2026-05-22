@@ -459,6 +459,34 @@ html, body {
   color: var(--black);
 }
 
+/* ========== スコアバンド（5段階位置ラベル） ========== */
+.score-band {
+  display: inline-block;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 12px;
+  background: var(--bg-gray);
+  color: var(--text-sub);
+  letter-spacing: 1px;
+  margin-top: 10px;
+}
+.score-band:empty { display: none; }
+
+.score-band--low {
+  background: var(--bg-gray);
+  color: var(--text-light);
+}
+.score-band--mid {
+  background: var(--orange-light);
+  color: var(--orange);
+}
+.score-band--high {
+  background: var(--blue-light);
+  color: var(--blue);
+}
+
 /* ========== スコア説明文 ========== */
 .score-cell-desc {
   font-size: 12px;

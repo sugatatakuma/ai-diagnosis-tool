@@ -197,6 +197,11 @@
     document.getElementById('preview-readiness-score').textContent = result.readinessScore;
     document.getElementById('preview-total-score').textContent = result.totalScore;
 
+    // バンドラベル
+    setBand('preview-problem-band', result.problemBand);
+    setBand('preview-readiness-band', result.readinessBand);
+    setBand('preview-total-band', result.totalBand);
+
     // 診断タイプの解説 + キーメッセージ
     const typeInfo = CONFIG.diag_types[result.diagType];
     const descEl = document.getElementById('preview-diag-description');
@@ -227,6 +232,17 @@
   function setText(elId, text) {
     const el = document.getElementById(elId);
     if (el && text !== undefined) el.textContent = text;
+  }
+
+  function setBand(elId, band) {
+    const el = document.getElementById(elId);
+    if (!el || !band) return;
+    el.textContent = band.label;
+    // tier クラス付与: 5段階のうち下位2=low、中央=mid、上位2=high
+    el.classList.remove('score-band--low', 'score-band--mid', 'score-band--high');
+    if (band.index <= 1) el.classList.add('score-band--low');
+    else if (band.index === 2) el.classList.add('score-band--mid');
+    else el.classList.add('score-band--high');
   }
 
   function setProgressBarColor(elId, value, max) {

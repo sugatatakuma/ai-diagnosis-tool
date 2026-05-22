@@ -146,17 +146,33 @@
     };
   };
 
+  // バンドラベル取得 (5段階)
+  SCORE.calcBand = function (value, bandKey, config) {
+    const bands = (config.score_bands && config.score_bands[bandKey]) || [];
+    for (let i = 0; i < bands.length; i++) {
+      const b = bands[i];
+      if (value >= b.min && value <= b.max) {
+        return { label: b.label, index: i, total: bands.length };
+      }
+    }
+    return { label: '', index: -1, total: bands.length };
+  };
+
   // 一括計算
   SCORE.calcAll = function (answers, config) {
     const problemScore = SCORE.calcProblemScore(answers, config);
     const readinessScore = SCORE.calcReadinessScore(answers, config);
+    const totalScore = problemScore + readinessScore;
     const diagType = SCORE.calcDiagType(problemScore, readinessScore, config);
     const reduction = SCORE.calcReduction(answers, problemScore, config);
 
     return {
       problemScore: problemScore,
       readinessScore: readinessScore,
-      totalScore: problemScore + readinessScore,
+      totalScore: totalScore,
+      problemBand: SCORE.calcBand(problemScore, 'problem', config),
+      readinessBand: SCORE.calcBand(readinessScore, 'readiness', config),
+      totalBand: SCORE.calcBand(totalScore, 'total', config),
       diagType: diagType,
       diagTypeName: config.diag_types[diagType].name,
       reduction: reduction
