@@ -229,8 +229,9 @@
 
   function setLevel(scaleElId, levelData) {
     if (!levelData) return;
-    const tier = levelData.index === 0 ? 'low'
-               : levelData.index === 1 ? 'mid'
+    // 5段階のtier分類: 1-2=low (gray), 3=mid (orange), 4-5=high (blue)
+    const tier = levelData.index <= 1 ? 'low'
+               : levelData.index === 2 ? 'mid'
                : 'high';
     const scale = document.getElementById(scaleElId);
     if (scale) {
@@ -360,7 +361,7 @@
 
     // 簡易結果を再掲（メール待ち中の離脱を防ぐ）
     document.getElementById('thanks-diag-type').textContent = result.diagTypeName;
-    document.getElementById('thanks-total-level').textContent = result.totalLevel.level;
+    document.getElementById('thanks-total-level').textContent = result.totalLevel.level + ' / 5';
   }
 
   // ====== テストパターン自動投入 ======
